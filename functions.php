@@ -64,7 +64,7 @@ function IpVisiteur(){
 // End Fai part
 
     try {
-        $current .= $today ." - ". $ipAdress."  VILLE : ".$city."  CODE POSTAL :  ".$codePostal."  REGION :  ".$region."  FAI :  ".$fai."  ORGANISATION :  ".$organisation."\n";
+        $current .= $today ." - "." IP TRACKING DISABLED "."  VILLE : ".$city."  CODE POSTAL :  ".$codePostal."  REGION :  ".$region."  FAI :  ".$fai."  ORGANISATION :  ".$organisation."\n";
     } catch (Exception $e) {
         $current .= $today.'Exception reçue'.'\n' ;
     }
