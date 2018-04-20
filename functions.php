@@ -63,8 +63,28 @@ function IpVisiteur(){
 
 // End Fai part
 
+// meteo part
+
     try {
-        $current .= $today ." - "." IP TRACKING DISABLED "."  VILLE : ".$city."  CODE POSTAL :  ".$codePostal."  REGION :  ".$region."  FAI :  ".$fai."  ORGANISATION :  ".$organisation."\n";
+
+        $url = "http://api.openweathermap.org/data/2.5/weather?lat=".$lat."&lon=".$long."&lang=fr&APPID=".$meteoKey; //Go get a key to openWeathermap.com
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/json')); // Assuming you're requesting JSON
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $response = curl_exec($ch);
+        $resultData = json_decode($response, true);
+
+        $meteo=$resultData[weather][0][description];
+
+    } catch (Exception $e) {
+        echo 'Exception reçue : ',  $e->getMessage(), "\n";
+    }
+
+// End meteo part
+
+    try {
+     /*To add Ip tracking add $ipAdress to the list*/   $current .= $today ." - "." IP TRACKING DISABLED "."  VILLE : ".$city."  CODE POSTAL :  ".$codePostal."  REGION :  ".$region."  FAI :  ".$fai."  ORGANISATION :  ".$organisation." METEO ".$meteo."\n";
     } catch (Exception $e) {
         $current .= $today.'Exception reçue'.'\n' ;
     }
