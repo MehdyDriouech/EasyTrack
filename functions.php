@@ -129,6 +129,8 @@ function IpVisiteur(){
     $resultData = json_decode($response, true);
 
     if ($status = $resultData[status]){
+        $long=$resultData[lon];
+        $lat=$resultData[lat];
         $fai = $resultData[isp];
         $city = $resultData[city];
         $region = $resultData[regionName];
@@ -180,6 +182,8 @@ function IpVisiteur(){
         'region'  => $region,
         'isp'    => $fai,
         'oragnisation'    => $organisation,
+        'long'    => $long,
+        'lat'    => $lat,
         'meteo'    => $meteo
     );
 
